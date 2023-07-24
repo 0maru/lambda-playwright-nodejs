@@ -8,15 +8,24 @@ exports.handler = async (event, context) => {
         const context = await browser.newContext();
 
         const page = await context.newPage();
-        await page.goto(event.url || 'https://zozo.jp/?c=gr&did=99340280');
+        const url = event['queryStringParameters']['url']
+        if (!url) {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({
+                    message: 'URLを入力してください　'
+                }),
+            };
+
+        }
+        await page.goto(event.url || url);
 
         const title = await page.title()
         console.log('Page title: ', title);
-        const response = {
+        return {
             statusCode: 200,
             body: JSON.stringify(title),
         };
-        return response;
     } catch (error) {
         throw error;
     } finally {
