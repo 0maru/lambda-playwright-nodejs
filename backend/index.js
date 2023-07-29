@@ -12,6 +12,11 @@ exports.handler = async (event, context) => {
         if (!url) {
             return {
                 statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+                },
                 body: JSON.stringify({
                     message: 'URLを入力してください　'
                 }),
@@ -54,7 +59,7 @@ exports.handler = async (event, context) => {
             statusCode: 200,
             body: JSON.stringify({
                 title: title,
-                ogImage: data
+                ...data
             }),
         };
     } catch (error) {
