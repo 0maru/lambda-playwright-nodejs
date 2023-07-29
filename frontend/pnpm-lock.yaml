@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@kuma-ui/core':
-    specifier: ^1.1.0
-    version: 1.1.0(@types/react@18.2.17)(next@13.4.12)(react@18.2.0)
   next:
     specifier: ^13.4.12
     version: 13.4.12(react-dom@18.2.0)(react@18.2.0)
@@ -30,41 +27,6 @@ devDependencies:
     version: 5.1.6
 
 packages:
-
-  /@kuma-ui/core@1.1.0(@types/react@18.2.17)(next@13.4.12)(react@18.2.0):
-    resolution: {integrity: sha512-oRt1qQeZV0sUV0bu0oNuGIDcVEOn4l8eSxv66gye4fmFvZZPaTZNGGrpB/lvmOijaP+TakEK5JQGYfmsSoiReQ==}
-    peerDependencies:
-      '@types/react': ^18.0.32
-      next: '>=13.4.5'
-      react: '>=18.2.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      next:
-        optional: true
-    dependencies:
-      '@kuma-ui/sheet': 1.0.1
-      '@kuma-ui/system': 1.0.1
-      '@types/react': 18.2.17
-      '@types/stylis': 4.2.0
-      next: 13.4.12(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      stylis: 4.3.0
-      ts-pattern: 5.0.4
-    dev: false
-
-  /@kuma-ui/sheet@1.0.1:
-    resolution: {integrity: sha512-D5MrDi36THZPcF+SkhTjaFP5dsbUdCm66efJa0cAtkg2bFuQIFYoz6Dz1EFQCeA1GKri6Ul9ltiLb3FOMb77lw==}
-    dependencies:
-      stylis: 4.3.0
-    dev: false
-
-  /@kuma-ui/system@1.0.1:
-    resolution: {integrity: sha512-fk9p4VhnxPz8D8SELRmx7yvD2FT3VbSDZ8zaIV94jN0Td37+0JeXgl0ypX5KGll3iRdzJZg7qj7IRo1cIh2oMA==}
-    dependencies:
-      '@kuma-ui/sheet': 1.0.1
-      csstype: 3.1.2
-    dev: false
 
   /@next/env@13.4.12:
     resolution: {integrity: sha512-RmHanbV21saP/6OEPBJ7yJMuys68cIf8OBBWd7+uj40LdpmswVAwe1uzeuFyUsd6SfeITWT3XnQfn6wULeKwDQ==}
@@ -163,6 +125,7 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
 
   /@types/react@18.2.17:
     resolution: {integrity: sha512-u+e7OlgPPh+aryjOm5UJMX32OvB2E3QASOAqVMY6Ahs90djagxwv2ya0IctglNbNTexC12qCSMZG47KPfy1hAA==}
@@ -170,13 +133,11 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
+    dev: true
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
-
-  /@types/stylis@4.2.0:
-    resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
-    dev: false
+    dev: true
 
   /busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
@@ -195,6 +156,7 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+    dev: true
 
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
@@ -325,14 +287,6 @@ packages:
     dependencies:
       client-only: 0.0.1
       react: 18.2.0
-    dev: false
-
-  /stylis@4.3.0:
-    resolution: {integrity: sha512-E87pIogpwUsUwXw7dNyU4QDjdgVMy52m+XEOPEKUn161cCzWjjhPSQhByfd1CcNvrOLnXQ6OnnZDwnJrz/Z4YQ==}
-    dev: false
-
-  /ts-pattern@5.0.4:
-    resolution: {integrity: sha512-D5iVliqugv2C9541W2CNXFYNEZxr4TiHuLPuf49tKEdQFp/8y8fR0v1RExUvXkiWozKCwE7zv07C6EKxf0lKuQ==}
     dev: false
 
   /tslib@2.6.1:

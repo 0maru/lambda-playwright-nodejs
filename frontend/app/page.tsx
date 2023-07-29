@@ -1,20 +1,17 @@
-import { Box, Button, Input } from '@kuma-ui/core'
-
 const Page = () => {
   return <>
-    <Box as="main" display="flex" flexDir={['column']}>
+    <div>
       <form>
-        <Input placeholder="URLを入力してください" />
-        <Button variant="primary">読み取り</Button>
+        <input placeholder={'url を入力してください'} />
+        <button>読み取る</button>
       </form>
-      <Box>
-        <p>読み取り結果</p>
+      <div>
         <p>タイトル</p>
+        <p>商品詳細</p>
         <p>画像</p>
-        <p>商品情報</p>
         <p>金額</p>
-      </Box>
-    </Box>
+      </div>
+    </div>
   </>
 }
 
