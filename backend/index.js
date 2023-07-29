@@ -20,11 +20,11 @@ exports.handler = async (event, context) => {
         }
         await page.goto(event.url || url);
 
-        // metaタグを取得
-        const ogImageTags = await page.evaluate(() => {
+
+        const data = await page.evaluate(() => {
+            // metaタグを取得
             const ogImageTags = [];
             const metaElements = document.querySelectorAll('meta');
-
             metaElements.forEach((element) => {
                 const tag = {};
                 const attributes = element.attributes;
@@ -38,12 +38,15 @@ exports.handler = async (event, context) => {
                 }
             });
 
-            return ogImageTags;
+            // LD-JSON を取得
+            var jsonld = JSON.parse(document.querySelectorAll('script[type="application/ld+json"]')[0].innerText);
+
+            const jsJson = document.querySelector()
+
+            return {
+                ogImage: ogImageTags
+            };
         });
-
-        // 取得したmetaタグを表示
-        console.log(ogImageTags);
-
 
         const title = await page.title()
         console.log('Page title: ', title);
@@ -51,7 +54,7 @@ exports.handler = async (event, context) => {
             statusCode: 200,
             body: JSON.stringify({
                 title: title,
-                ogImage: ogImageTags[0]['content']
+                ogImage: data
             }),
         };
     } catch (error) {
