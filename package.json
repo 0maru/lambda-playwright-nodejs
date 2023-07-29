@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "vite build",
+    "lint": "tsc"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}

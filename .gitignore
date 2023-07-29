@@ -1,2 +1,8 @@
 .idea
 node_modules/
+
+.turbo
+# next.js
+.next/
+out/
+build
