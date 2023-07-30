@@ -1,7 +1,5 @@
 const playwright = require('playwright-aws-lambda');
 
-// 稀にどれかのデータが取れない事があるリトライすると取れるので１つでも取れなければエラーにして、
-// このAPI全体の呼び出しからリトライすると良さそう
 exports.handler = async (event, context) => {
     let browser = null;
 
