@@ -9,23 +9,7 @@ exports.handler = async (event, context) => {
 
         const page = await context.newPage();
         const url = event['queryStringParameters']['url']
-        if (!url) {
-            return {
-                statusCode: 200,
-                headers: {
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
-                },
-                body: JSON.stringify({
-                    message: 'URLを入力してください　'
-                }),
-            };
-
-        }
         await page.goto(event.url || url);
-
-
         const data = await page.evaluate(() => {
             // metaタグを取得
             const ogImageTags = [];
@@ -39,22 +23,32 @@ exports.handler = async (event, context) => {
                 }
 
                 if (tag.property === 'og:image') {
-                    ogImageTags.push(tag);
+                    ogImageTags.push(tag.content);
                 }
             });
 
-            // LD-JSON を取得
-            const jsonLdTags = []
-            const jsonLdList = document.querySelectorAll('script[type="application/ld+json"]')
-            console.log(jsonLdList)
-            for (jsonld in jsonLdList) {
-                jsonLdList.push(jsonld.innerText)
-            }
+            // JSON-LD を取得
+            // 順番が保証されていないのでループ回して最終的に取れたものを使用する
+            var description = 'none';
+            var price = -0;
+            var priceCurrency = '';
+            const jsonLdList = document.querySelectorAll('script[type="application/ld+json"]');
+            jsonLdList.forEach((e) => {
+                const json = JSON.parse(e.innerHTML);
+                if ('offers' in json) {
+                    description = json.offers.description;
+                    price = json.offers.price;
+                    priceCurrency = json.offers.priceCurrency;
+                }
+            });
             return {
-                ogImage: ogImageTags,
-                jsonld: jsonLdTags
+                ogImage: ogImageTags[0],
+                description,
+                price,
+                priceCurrency,
             };
         });
+        console.log(data)
 
         const title = await page.title()
         console.log('Page title: ', title);
@@ -67,7 +61,7 @@ exports.handler = async (event, context) => {
             },
             body: JSON.stringify({
                 title: title,
-                ...data
+                ...data,
             }),
         };
     } catch (error) {
