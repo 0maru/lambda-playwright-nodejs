@@ -44,12 +44,15 @@ exports.handler = async (event, context) => {
             });
 
             // LD-JSON を取得
-            var jsonld = JSON.parse(document.querySelectorAll('script[type="application/ld+json"]')[0].innerText);
-
-            const jsJson = document.querySelector()
-
+            const jsonLdTags = []
+            const jsonLdList = document.querySelectorAll('script[type="application/ld+json"]')
+            console.log(jsonLdList)
+            for (jsonld in jsonLdList) {
+                jsonLdList.push(jsonld.innerText)
+            }
             return {
-                ogImage: ogImageTags
+                ogImage: ogImageTags,
+                jsonld: jsonLdTags
             };
         });
 
@@ -57,13 +60,28 @@ exports.handler = async (event, context) => {
         console.log('Page title: ', title);
         return {
             statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
             body: JSON.stringify({
                 title: title,
                 ...data
             }),
         };
     } catch (error) {
-        throw error;
+        return {
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+            },
+            body: JSON.stringify({
+                message: error
+            }),
+        };
     } finally {
         if (browser) {
             await browser.close();
